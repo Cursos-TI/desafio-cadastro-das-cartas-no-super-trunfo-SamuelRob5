@@ -7,7 +7,7 @@
 
 int main() {
     printf("teste \n");
-    char estado [32][1];                 //estado
+    char estado [8][1];                  //estado
     char nomecidade [32][99];            //cidade
     int populacao [32];                  //população
     float area[32];                      //área
@@ -15,7 +15,15 @@ int main() {
     int ptturismo [32];                  //número de pontos turisticos
     // Sugestão: Defina variáveis separadas para cada atributo da cidade.
     // Exemplos de atributos: código da cidade, nome, população, área, PIB, número de pontos turísticos.
-    
+    while(1){
+        printf("Olá \n ");
+        printf("Hora de cadastrar as cartas do Super Trunfo \n");
+        printf("Digite o estado da carta usando algum desses caracteres a seguir \n ");
+        printf("Serão aceitos somente os caracteres A,B,C,D,E,F,G e H \n ");
+        printf("Insira a seguir um digito válido: ");
+        scanf("%c",&estado[1]);
+
+    }
     // Cadastro das Cartas:
     // Sugestão: Utilize a função scanf para capturar as entradas do usuário para cada atributo.
     // Solicite ao usuário que insira as informações de cada cidade, como o código, nome, população, área, etc.
