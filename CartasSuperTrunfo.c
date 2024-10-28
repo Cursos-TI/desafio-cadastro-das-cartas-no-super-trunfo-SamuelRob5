@@ -19,7 +19,8 @@ int main() {
       int i, j;
 
     printf("Cadastro de Cidades - Super Trunfo Países\n");
-
+  
+    //
     // Entrada de dados
     for (i = 0; i < num_estados; i++) {
         for (j = 0; j < num_cidades; j++) {
