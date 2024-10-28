@@ -20,7 +20,7 @@ struct Cidade{
 int main() {
     struct Cidade cidades[num_estados * num_cidades];
     char estado_letras[num_estados]={'A','B','C','D','E','F','G','H'};
-      int i, j , vencedor[7]={0,0,0,0,0,0,0};
+      int i, j , vencedor[7]={0,0,0,0,0,0,0}, carta1 , carta2;
 
     printf("Cadastro de Cidades - Super Trunfo Países\n");
   
@@ -38,7 +38,7 @@ int main() {
             scanf("%d", &cidades[index].populacao);
             printf("Área (km²): ");
             scanf("%f", &cidades[index].area);
-            cidades[index].densidade_populacional = cidades[index].populacao/cidades[index].area;// calculo da densidade populacional
+            cidades[index].densidade_populacional = (float)cidades[index].populacao/cidades[index].area;// calculo da densidade populacional
             printf("PIB (bilhões): ");
             scanf("%f", &cidades[index].pib);
             cidades[index].PIB_per_capita = cidades[index].pib/cidades[index].populacao; // calculo do pib per capita
@@ -63,40 +63,44 @@ int main() {
         printf("Pontos turísticos: %d\n", cidades[i].pontos_turisticos);
         
     }
-    
-    for (i = 1; i < num_estados * num_cidades; i++) {
-        if (cidades[i].populacao > cidades[vencedor[0]].populacao) vencedor[0] = i;
-        if (cidades[i].area > cidades[vencedor[1]].area) vencedor[1] = i;
-        if (cidades[i].densidade_populacional < cidades[vencedor[2]].densidade_populacional) vencedor[2] = i;
-        if (cidades[i].pib > cidades[vencedor[3]].pib) vencedor[3] = i;
-        if (cidades[i].PIB_per_capita > cidades[vencedor[4]].PIB_per_capita) vencedor[4] = i;
-        if (cidades[i].pontos_turisticos > cidades[vencedor[5]].pontos_turisticos) vencedor[5] = i;
-        if (cidades[i].superpoder > cidades[vencedor[6]].superpoder) vencedor[6] = i;
-}
-        // exibição das cartas vencedoras
-        printf("\n--- Cartas Vencedoras ---\n");
+    while(1){
+    // Solicitar ao usuário que escolha duas cartas para comparação
+    printf("\nEscolha duas cartas para comparar (digite os números de 0 a %d):\n", num_estados * num_cidades - 1);
+    printf("Carta 1: ");
+    scanf("%d", &carta1);
+    printf("Carta 2: ");
+    scanf("%d", &carta2);
 
-        printf("A Cidade com a maior População é a %s - %s com  %d habitantes \n",cidades[vencedor[0]].codigo, 
-        cidades[vencedor[0]].nome , cidades[vencedor[0]].populacao);
+    // Verifica se os índices inseridos são válidos
+    if (carta1 < 0 || carta1 >= num_estados * num_cidades || carta2 < 0 || carta2 >= num_estados * num_cidades) {
+        printf("Índices de cartas inválidos.\n");
+        return 1;
+    }
 
-        printf("A Cidade com a maior Área é a %s - %s com  Área : %.2f km²\n", cidades[vencedor[1]].codigo, cidades[vencedor[1]].nome 
-        , cidades[vencedor[1]].area);
+    // Comparações e exibição de resultados
+    printf("\n--- Comparação de Cartas ---\n");
 
-        printf("A Cidade com a maior Densidade Populacional é a %s - %s com : %.2f hab./km²\n", cidades[vencedor[2]].codigo,
-         cidades[vencedor[2]].nome , cidades[vencedor[2]].densidade_populacional);
+    printf("População: %s\n", 
+        cidades[carta1].populacao > cidades[carta2].populacao ? cidades[carta1].nome : cidades[carta2].nome);
 
-        printf("A Cidade com o maior PIB é a %s - %s com PIB: %.2f bilhões\n", cidades[vencedor[3]].codigo, cidades[vencedor[3]].nome 
-        , cidades[vencedor[3]].pib);
+    printf("Área: %s\n", 
+        cidades[carta1].area > cidades[carta2].area ? cidades[carta1].nome : cidades[carta2].nome);
 
-        printf("A Cidade com o maior PIB per capita é a %s - %s com um PIB per capita de %.2f\n", cidades[vencedor[4]].codigo,
-         cidades[vencedor[4]].nome , cidades[vencedor[4]].PIB_per_capita);
+    printf("Densidade Populacional: %s\n", 
+        cidades[carta1].densidade_populacional < cidades[carta2].densidade_populacional ? cidades[carta1].nome : cidades[carta2].nome);
 
-        printf("A Cidade com o maior número de Pontos turísticos é a %s - %s com : %d\n", cidades[vencedor[5]].codigo,
-         cidades[vencedor[5]].nome , cidades[vencedor[5]].pontos_turisticos);
+    printf("PIB: %s\n", 
+        cidades[carta1].pib > cidades[carta2].pib ? cidades[carta1].nome : cidades[carta2].nome);
 
-        printf("A Cidade com o maior Super Poder é a %s - %s com : %2.f\n", cidades[vencedor[6]].codigo, cidades[vencedor[6]].nome ,
-         cidades[vencedor[6]].superpoder);
+    printf("PIB per Capita: %s\n", 
+        cidades[carta1].PIB_per_capita > cidades[carta2].PIB_per_capita ? cidades[carta1].nome : cidades[carta2].nome);
 
-    
+    printf("Pontos Turísticos: %s\n", 
+        cidades[carta1].pontos_turisticos > cidades[carta2].pontos_turisticos ? cidades[carta1].nome : cidades[carta2].nome);
+
+    printf("Super Poder: %s\n", 
+        cidades[carta1].superpoder > cidades[carta2].superpoder ? cidades[carta1].nome : cidades[carta2].nome);
+
     return 0;
+    }
 }
