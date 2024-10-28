@@ -2,17 +2,19 @@
 
 // Desafio Super Trunfo - Países
 // Tema 1 - Cadastro das Cartas
-// Este código inicial serve como base para o desenvolvimento do sistema de cadastro de cartas de cidades.
-// Siga os comentários para implementar cada parte do desafio.
+//
 
+struct Cidade{
+    char codigo[4];         //código da cidade
+    char nome[50];          //nome da cidade
+    int populacao;          //população da cidade
+    float area;             //área da cidade em km²
+    float pib;              //PIB da cidade em bilhões
+    int pontos_turisticos;  //Número de pontos turisticos
+};
 int main() {
-    printf("teste \n");
-    char estado [8][1];                  //estado
-    char nomecidade [32][99];            //cidade
-    int populacao [32];                  //população
-    float area[32];                      //área
-    float pib[32];                       // PIB
-    int ptturismo [32];                  //número de pontos turisticos
+    struct Cidade cidades[num_estados * num_cidades];
+    char estado_letras[num_estados]={'A','B','C','D','E','F','G','H'};
     // Sugestão: Defina variáveis separadas para cada atributo da cidade.
     // Exemplos de atributos: código da cidade, nome, população, área, PIB, número de pontos turísticos.
     while(1){
@@ -21,8 +23,23 @@ int main() {
         printf("Digite o estado da carta usando algum desses caracteres a seguir \n ");
         printf("Serão aceitos somente os caracteres A,B,C,D,E,F,G e H \n ");
         printf("Insira a seguir um digito válido: ");
-        scanf("%c",&estado[1]);
+        scanf("%c", estado[0]);
+        printf(" %c ", estado[0][0]);
+        for (int i = 0; i < 8; i++)
+        {
+            if(estado[i][0]=="A") confir=1;
+            if(estado[i][0]=="B") confir=1;
+            if(estado[i][0]=="C") confir=1;
+            if(estado[i][0]=="D") confir=1;
+            if(estado[i][0]=="E") confir=1;
+            if(estado[i][0]=="F") confir=1;
+            if(estado[i][0]=="G") confir=1;
+            if(estado[i][0]=="H") confir=1;
+            else confir=0
 
+        }
+        
+        confir=1;
     }
     // Cadastro das Cartas:
     // Sugestão: Utilize a função scanf para capturar as entradas do usuário para cada atributo.
