@@ -2,8 +2,9 @@
 
 // Desafio Super Trunfo - Países
 // Tema 1 - Cadastro das Cartas
-//
-
+#define num_estados 8
+#define num_cidades 4
+//estrutura que representa cada cidade
 struct Cidade{
     char codigo[4];         //código da cidade
     char nome[50];          //nome da cidade
@@ -15,39 +16,39 @@ struct Cidade{
 int main() {
     struct Cidade cidades[num_estados * num_cidades];
     char estado_letras[num_estados]={'A','B','C','D','E','F','G','H'};
-    // Sugestão: Defina variáveis separadas para cada atributo da cidade.
-    // Exemplos de atributos: código da cidade, nome, população, área, PIB, número de pontos turísticos.
-    while(1){
-        printf("Olá \n ");
-        printf("Hora de cadastrar as cartas do Super Trunfo \n");
-        printf("Digite o estado da carta usando algum desses caracteres a seguir \n ");
-        printf("Serão aceitos somente os caracteres A,B,C,D,E,F,G e H \n ");
-        printf("Insira a seguir um digito válido: ");
-        scanf("%c", estado[0]);
-        printf(" %c ", estado[0][0]);
-        for (int i = 0; i < 8; i++)
-        {
-            if(estado[i][0]=="A") confir=1;
-            if(estado[i][0]=="B") confir=1;
-            if(estado[i][0]=="C") confir=1;
-            if(estado[i][0]=="D") confir=1;
-            if(estado[i][0]=="E") confir=1;
-            if(estado[i][0]=="F") confir=1;
-            if(estado[i][0]=="G") confir=1;
-            if(estado[i][0]=="H") confir=1;
-            else confir=0
+      int i, j;
 
+    printf("Cadastro de Cidades - Super Trunfo Países\n");
+
+    // Entrada de dados
+    for (i = 0; i < num_estados; i++) {
+        for (j = 0; j < num_cidades; j++) {
+            int index = i * num_cidades + j;
+            sprintf(cidades[index].codigo, "%c%02d", estado_letras[i], j + 1);
+
+            printf("\nDigite as informações para a cidade %s:\n", cidades[index].codigo);
+            printf("Nome da cidade: ");
+            scanf(" %[^\n]s", cidades[index].nome);  // Lê o nome da cidade com espaços
+            printf("População: ");
+            scanf("%d", &cidades[index].populacao);
+            printf("Área (km²): ");
+            scanf("%f", &cidades[index].area);
+            printf("PIB (bilhões): ");
+            scanf("%f", &cidades[index].pib);
+            printf("Número de pontos turísticos: ");
+            scanf("%d", &cidades[index].pontos_turisticos);
         }
-        
-        confir=1;
     }
-    // Cadastro das Cartas:
-    // Sugestão: Utilize a função scanf para capturar as entradas do usuário para cada atributo.
-    // Solicite ao usuário que insira as informações de cada cidade, como o código, nome, população, área, etc.
-    
-    // Exibição dos Dados das Cartas:
-    // Sugestão: Utilize a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
-    // Exiba os valores inseridos para cada atributo da cidade, um por linha.
+
+    // Exibição dos dados
+    printf("\n--- Cartas Cadastradas ---\n");
+    for (i = 0; i < num_estados * num_cidades; i++) {
+        printf("\nCidade %s - %s:\n", cidades[i].codigo, cidades[i].nome);
+        printf("População: %d\n", cidades[i].populacao);
+        printf("Área: %.2f km²\n", cidades[i].area);
+        printf("PIB: %.2f bilhões\n", cidades[i].pib);
+        printf("Pontos turísticos: %d\n", cidades[i].pontos_turisticos);
+    }
 
     return 0;
 }
